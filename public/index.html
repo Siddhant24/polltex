@@ -3,8 +3,8 @@
 <html>
 
 	<head>
-		<title>Clementine.js - The elegant and lightweight full stack JavaScript boilerplate.</title>
-		
+		<title>Polltex</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 	</head>
 
@@ -17,17 +17,16 @@
 
 	<body>
 		<div class="container">
-			<img src="/public/img/clementine_150.png" />
-			<br />
-			<p class="clementine-text">Clementine.js</p>
+			<br>
+			<p class="clementine-text">Polltex</p>
+			<img src="/public/sharingan icons/256.png" />
 		</div>
 	
 		<div class="container">
-			<p>You have clicked the button <span id="click-nbr"></span> times.</p>
-			<br />
-			<div class="btn-container">
-				<button type="submit" class="btn btn-add">CLICK ME!</button>
-				<button class="btn btn-delete">RESET</button>
+			<p class="message">What would you like to do?</p>
+			<div class="row">
+				<div class="col-xs-6"><button class="btn btn-primary" id="new">New Poll</button></div>
+				<div class="col-xs-6"><button class="btn btn-default" id="all">My Polls</button></div>
 			</div>
 		</div>
 		
