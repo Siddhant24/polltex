@@ -141,7 +141,6 @@ img {
 	font-size: 14px;
 	border-radius: 3px;
 	padding: 10px 5px;
-	width: 100px;
 	font-weight: 500;
 }
 
@@ -213,4 +212,10 @@ span {
 	color: #FFFFFF;
 	display: inline;
 	margin: 0;
+}
+
+/****New poll page styling****/
+
+.form{
+	margin: 50px;
 }

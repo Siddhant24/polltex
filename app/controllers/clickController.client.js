@@ -1,11 +1,20 @@
 'use strict';
 
 (function () {
-
-   var addButton = document.querySelector('.btn-add');
+   
+   var new_poll = document.querySelector('#new');
+   var all_polls = document.querySelector("#all");
+   
+   new_poll.addEventListener('click', function(){
+      window.location.href = appUrl + '/new_poll';
+   });
+   
+   all_polls.addEventListener('click', function(){
+      window.location.href = appUrl + '/all_polls';
+   });
+  /* var addButton = document.querySelector('.btn-add');
    var deleteButton = document.querySelector('.btn-delete');
    var clickNbr = document.querySelector('#click-nbr');
-   var apiUrl = appUrl + '/api/:id/clicks';
 
    function updateClickCount (data) {
       var clicksObject = JSON.parse(data);
@@ -28,6 +37,6 @@
          ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
       });
 
-   }, false);
+   }, false);*/
 
 })();

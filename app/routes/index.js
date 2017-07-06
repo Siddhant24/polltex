@@ -49,6 +49,11 @@ module.exports = function (app, passport) {
 			successRedirect: '/',
 			failureRedirect: '/login'
 		}));
+		
+	app.route('/new_poll')
+		.get(isLoggedIn, function (req, res) {
+			res.sendFile(path + '/public/new_poll.html');
+		});
 
 	app.route('/api/:id/clicks')
 		.get(isLoggedIn, clickHandler.getClicks)
