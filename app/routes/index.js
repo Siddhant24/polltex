@@ -56,7 +56,7 @@ module.exports = function (app, passport) {
 			res.sendFile(path + '/public/new_poll.html');
 		})
 		.post(isLoggedIn, function (req, res) {
-			PollHandler.newPoll(req.body).save(function (err, poll) {
+			PollHandler.newPoll(req.body, req.user).save(function (err, poll) {
 				if (err) return console.error(err);
 				
 			});
