@@ -56,9 +56,9 @@ module.exports = function (app, passport) {
 			res.sendFile(path + '/public/new_poll.html');
 		})
 		.post(isLoggedIn, function (req, res) {
-			PollHandler.newPoll(req.body).save(function (err, fluffy) {
+			PollHandler.newPoll(req.body).save(function (err, poll) {
 				if (err) return console.error(err);
-				console.log(fluffy.question);
+				
 			});
 			res.send("success");
 		});
