@@ -23,6 +23,7 @@
   "author": "Siddhant Bhakar",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "chart.js": "^2.6.0",
     "dotenv": "^1.2.0",
     "express": "^4.12.4",
