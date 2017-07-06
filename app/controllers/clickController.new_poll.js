@@ -1,3 +1,5 @@
+'use strict';
+
 document.querySelector("#new").addEventListener('click', function(){
 				var options = document.querySelector(".options");
 				var option_num = (parseInt(options.lastElementChild.getAttribute("name").slice(6))+1).toString();

@@ -10,7 +10,7 @@
    });
    
    all_polls.addEventListener('click', function(){
-      window.location.href = appUrl + '/all_polls';
+      window.location.href = appUrl + '/my_polls';
    });
   /* var addButton = document.querySelector('.btn-add');
    var deleteButton = document.querySelector('.btn-delete');

@@ -62,6 +62,16 @@ module.exports = function (app, passport) {
 			});
 			res.send("success");
 		});
+		
+	app.route('/my_polls')
+		.get(isLoggedIn, function (req, res){
+			res.sendFile(path + '/public/my_polls.html');
+		});
+		
+	app.route('/my_polls/get')
+		.get(isLoggedIn, function (req, res){
+			PollHandler.findMyPolls(req.user, res);
+		});
 
 	/*app.route('/api/:id/clicks')
 		.get(isLoggedIn, clickHandler.getClicks)
