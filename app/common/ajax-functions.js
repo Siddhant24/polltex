@@ -24,5 +24,12 @@ var ajaxFunctions = {
 
       xmlhttp.open(method, url, true);
       xmlhttp.send();
+   },
+   
+   ajaxPostRequest: function ajaxPostRequest (body, url, callback) {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("POST", url, true);
+      xmlhttp.setRequestHeader('Content-Type', 'application/json');
+      xmlhttp.send(JSON.stringify(body));
    }
 };
