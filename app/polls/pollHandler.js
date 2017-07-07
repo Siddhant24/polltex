@@ -5,6 +5,13 @@ var chartHandler = require('../charts/chartHandler.js');
 
 module.exports = {
   
+  allPolls: function(res){
+    Poll.find({}, function(err, docs){
+      if(err) return console.error(err);
+      res.json(chartHandler.myCharts(docs));
+    });
+  },
+  
   newPoll: function(data, user){
       var poll_data = {
           question: data.question,
