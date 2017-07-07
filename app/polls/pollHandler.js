@@ -32,25 +32,51 @@ module.exports = {
   
   removeMyPoll: function(id, user){
     Poll.remove({_id: id, user: user}, function(err) { 
-      if(err) throw err;
+      if(err) return console.error(err);
     });
   },
   
   myVote: function(user_id, body){
     var countField = {};
     countField["count." + (body.option-1).toString()] = 1;
-    var voterInfo = {id: user_id, vote: body.value};
-    console.log(body.poll_id);
+    var voterInfo = {id: user_id, vote: body.value, option: body.option};
+    //console.log(body.poll_id);
     Poll.findOneAndUpdate({_id: body.poll_id}, {
       $push: { voters: voterInfo },
       $inc : countField
     }, {new: true}, function(data){
-      console.log(data);
     });
   },
   
- /* hasVoted: function(id){
-    Poll.find({})
-  }
-    */
+  deleteMyVote: function(voter, poll_id){
+    var countField = {};
+    countField["count." + (voter.option-1).toString()] = -1;
+    Poll.findOneAndUpdate({_id: poll_id}, {
+      $pull: {voters: voter },
+      $inc: countField
+    }, {new:true}, function(data){
+      
+    });
+  },
+  
+  Voted: function(user_id, poll_id){
+      var voted = null;
+      var promise = new Promise(function(resolve, reject) {
+        Poll.findOne({_id: poll_id}, function(err, poll){
+          if(err) return console.error(err);
+          poll.voters.forEach(function(voter){
+            if(voter.id == user_id){
+              voted = voter;
+              resolve(voted);
+            }
+          });
+        });
+      });
+      
+     return promise.then(function(voted) {
+        return voted;
+          }, function(err) {
+        console.log(err); 
+        });
+   }
 };
