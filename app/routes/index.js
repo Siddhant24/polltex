@@ -81,13 +81,20 @@ module.exports = function (app, passport) {
     				req.connection.remoteAddress || 
     				req.socket.remoteAddress ||
     				req.connection.socket.remoteAddress;
+    		var voted;
+    		var user_id;
 			if(req.isAuthenticated()){
-				PollHandler.myVote(req.user._id, req.body);
+				user_id = req.body.poll_id;
 			}
 			else{
-				PollHandler.myVote(ip.split(',')[0], req.body);
+				user_id = ip.split(',')[0];
 			}
-			console.log(req.body);
+			PollHandler.Voted(user_id, req.body.poll_id).then(function(voted){
+				PollHandler.deleteMyVote(voted, req.body.poll_id);
+			});
+
+	
+			PollHandler.myVote(user_id, req.body);
 			res.send("success");
 		});
 		
