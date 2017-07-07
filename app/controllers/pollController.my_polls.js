@@ -8,11 +8,11 @@
  var  polls = [];
  var dropdown = document.querySelector(".dropdown");
  var btn_vote = document.getElementById("btn-vote");
+ var prevChart = null;
  
  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, function(data){
       var id  = 0;
       JSON.parse(data).slice(0,-1).forEach(function(poll){
-      console.log(poll);
          polls.push(poll);
          var btn = document.createElement("button");
          var delBtn = document.createElement("button");
@@ -30,8 +30,10 @@
      });
      
      document.querySelectorAll(".btn-poll").forEach(btn => btn.addEventListener('click', function(e){
+     if(prevChart) prevChart.destoy();
      var index = Number(e.target.getAttribute("id"));
      var myChart = new Chart(ctx, JSON.parse(data).slice(-1)[0][index]);
+     prevChart = myChart;
      document.querySelector(".question").innerHTML = polls[index].question;
      Object.keys(polls[index].options).forEach(function(option){
       var newOption = document.createElement("option");
@@ -59,9 +61,8 @@
       body.poll_id = polls[Number(e.target.getAttribute("id").slice(1))]._id;
       body.option = Number(dropdown.selectedIndex) + 1;
       body.value = dropdown.value;
-      console.log(body);
       ajaxFunctions.ajaxPostRequest(body, apiUrl, function(data){
-       console.log(data);
+       window.location.reload();
       });
      });
      
