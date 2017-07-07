@@ -60,12 +60,12 @@ module.exports = function (app, passport) {
 				if (err) return console.error(err);
 				
 			});
-			res.send("success");
+			res.redirect(path + '/public/my_polls.html');
 		});
 		
 	app.route('/my_polls')
 		.get(isLoggedIn, function (req, res){
-			res.sendFile(path + '/public/my_polls.html');
+			res.send(path + '/public/my_polls.html');
 		});
 		
 	app.route('/my_polls/get')
@@ -96,6 +96,16 @@ module.exports = function (app, passport) {
 	
 			PollHandler.myVote(user_id, req.body);
 			res.send("success");
+		});
+		
+	app.route('/all_polls')
+		.get(function(req, res){
+			res.sendFile(path + '/public/all_polls.html');	
+		});
+		
+	app.route('/all_polls/get')
+		.get(function(req, res){
+			PollHandler.allPolls(res);
 		});
 		
 
