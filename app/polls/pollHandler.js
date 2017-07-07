@@ -30,10 +30,9 @@ module.exports = {
     })
   },
   
-  removeMyPolls: function(){
-    Poll.remove({}, function(err) { 
+  removeMyPoll: function(id, user){
+    Poll.remove({_id: id, user: user}, function(err) { 
       if(err) throw err;
-   console.log('collection removed') 
 });
   }
     
