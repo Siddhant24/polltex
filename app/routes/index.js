@@ -75,7 +75,22 @@ module.exports = function (app, passport) {
 		.delete(isLoggedIn, function (req, res){
 			PollHandler.removeMyPoll(req.query.id, req.user);
 			res.send("success");
+		})
+		.post(function (req, res){
+			var ip = req.headers['x-forwarded-for'] || 
+    				req.connection.remoteAddress || 
+    				req.socket.remoteAddress ||
+    				req.connection.socket.remoteAddress;
+			if(req.isAuthenticated()){
+				PollHandler.myVote(req.user._id, req.body);
+			}
+			else{
+				PollHandler.myVote(ip.split(',')[0], req.body);
+			}
+			console.log(req.body);
+			res.send("success");
 		});
+		
 
 	/*app.route('/api/:id/clicks')
 		.get(isLoggedIn, clickHandler.getClicks)
