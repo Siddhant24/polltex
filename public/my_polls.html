@@ -4,6 +4,7 @@
 		<title>Polltex</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+		
 	</head>
 	
 	<header>
@@ -18,9 +19,10 @@
             Click to a poll see aggregate poll results
             <br><br>
         </div>
+        <canvas id="myChart" width="400" height="400"></canvas>
 	    <script type="text/javascript" src="common/ajax-functions.js"></script>
 	    <script type="text/javascript" src="controllers/userController.client.js"></script>
 	    <script type="text/javascript" src="controllers/pollController.my_polls.js"></script>
+	    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
     </body>
-    <canvas class="ctx"></canvas>
 </html>
