@@ -33,7 +33,24 @@ module.exports = {
   removeMyPoll: function(id, user){
     Poll.remove({_id: id, user: user}, function(err) { 
       if(err) throw err;
-});
+    });
+  },
+  
+  myVote: function(user_id, body){
+    var countField = {};
+    countField["count." + (body.option-1).toString()] = 1;
+    var voterInfo = {id: user_id, vote: body.value};
+    console.log(body.poll_id);
+    Poll.findOneAndUpdate({_id: body.poll_id}, {
+      $push: { voters: voterInfo },
+      $inc : countField
+    }, {new: true}, function(data){
+      console.log(data);
+    });
+  },
+  
+ /* hasVoted: function(id){
+    Poll.find({})
   }
-    
+    */
 };
