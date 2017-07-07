@@ -16,11 +16,14 @@
     <body>
         <h1 class="text-center">My Polls</h1>
         <div class="text-center poll_list">
-            Click to a poll see aggregate poll results
+            Click a poll see aggregate poll results
             <br><br>
         </div>
         <h3 class="question"></h3>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <span id="your_vote" style="display:none">Your vote</span>
+        <select class="dropdown" style="display:none"></select>
+        <button class="btn btn-success" style="display:none" id="btn-vote">Vote</button>
+        <canvas id="myChart" width="200" height="200"></canvas>
 	    <script type="text/javascript" src="common/ajax-functions.js"></script>
 	    <script type="text/javascript" src="controllers/userController.client.js"></script>
 	    <script type="text/javascript" src="controllers/pollController.my_polls.js"></script>

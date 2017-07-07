@@ -127,6 +127,11 @@ img {
 	float: right;
 }
 
+.btn-success{
+	width: 50px;
+	font-size: 25px;
+}
+
 .btn-container {
 	margin: -10px auto 0 auto;
 	text-align: center;
