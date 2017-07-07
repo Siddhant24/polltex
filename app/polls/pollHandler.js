@@ -1,6 +1,7 @@
 'use strict';
 
 var Poll = require('../models/poll.js');
+var chartHandler = require('../charts/chartHandler.js');
 
 module.exports = {
   
@@ -25,8 +26,15 @@ module.exports = {
       user: user
     }, function (err, polls) {
       if (err) return console.error(err);
-      res.send(polls);
+      res.json(chartHandler.myCharts(polls));
     })
+  },
+  
+  removeMyPolls: function(){
+    Poll.remove({}, function(err) { 
+      if(err) throw err;
+   console.log('collection removed') 
+});
   }
     
 };
