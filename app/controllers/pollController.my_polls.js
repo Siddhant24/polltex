@@ -30,7 +30,12 @@
      });
      
      document.querySelectorAll(".btn-poll").forEach(btn => btn.addEventListener('click', function(e){
-     if(prevChart) prevChart.destoy();
+     if(prevChart){
+      prevChart.destroy();
+      while (dropdown.firstChild) {
+       dropdown.removeChild(dropdown.firstChild);
+      }
+     } 
      var index = Number(e.target.getAttribute("id"));
      var myChart = new Chart(ctx, JSON.parse(data).slice(-1)[0][index]);
      prevChart = myChart;
