@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Polltex</title>
+		<link rel="shortcut icon" href="/public/sharingan icons/32.png" type="image/x-icon">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+	</head>
+	
+	<header>
+	    <button class="home btn-link"><i class="fa fa-home" style="font-size:48px;" aria-hidden="true"></i>Home</button>
+	</header>
+	
+	<body>
+	    <div class="container">
+			<br>
+			<p class="clementine-text">Polltex</p>
+			<img src="/public/sharingan icons/128.png" />
+		</div>
+		<div class="text-center poll_list">
+            Click a poll see poll options, aggregate poll results and to vote
+            <br><br>
+        </div>
+		<h3 class="question"></h3>
+        <span id="your_vote"">Your vote</span>
+        <select class="dropdown"></select>
+        <button class="btn btn-success" id="btn-vote">Vote</button>
+        <canvas id="myChart" width="200" height="200"></canvas>
+        <script type="text/javascript" src="/common/ajax-functions.js"></script>
+        <script type="text/javascript" src="/controllers/pollController.poll.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+    </body>
+</html>
