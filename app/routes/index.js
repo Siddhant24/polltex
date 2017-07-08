@@ -60,12 +60,12 @@ module.exports = function (app, passport) {
 				if (err) return console.error(err);
 				
 			});
-			res.redirect(path + '/public/my_polls.html');
+			res.redirect('/my_polls');
 		});
 		
 	app.route('/my_polls')
 		.get(isLoggedIn, function (req, res){
-			res.send(path + '/public/my_polls.html');
+			res.sendFile(path + '/public/my_polls.html');
 		});
 		
 	app.route('/my_polls/get')
@@ -105,7 +105,11 @@ module.exports = function (app, passport) {
 		
 	app.route('/all_polls/get')
 		.get(function(req, res){
-			PollHandler.allPolls(res);
+			PollHandler.allPolls(res, req.isAuthenticated());
+		})
+		.post(isLoggedIn, function(req, res){
+			PollHandler.addOption(req.body);
+			res.send("success");
 		});
 		
 
