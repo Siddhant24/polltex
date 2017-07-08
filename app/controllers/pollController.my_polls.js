@@ -16,14 +16,24 @@
          polls.push(poll);
          var btn = document.createElement("button");
          var delBtn = document.createElement("button");
+         var option_btn = document.createElement("button");
+         var input = document.createElement('input');
+         input.setAttribute("type", "text");
+         input.setAttribute("id", `^${id}`);
+         input.setAttribute("style", "display:none");
+         option_btn.innerHTML = "Add a new option";
          delBtn.innerHTML = "Delete Poll";
          btn.innerHTML = poll.question;
+         option_btn.setAttribute("class", "btn btn-info btn-option");
+         option_btn.setAttribute("id", `-${id}`);
          btn.setAttribute("class", "btn btn-default btn-poll");
          btn.setAttribute("id", `${id}`);
          delBtn.setAttribute("class", "btn btn-danger btn-del");
          delBtn.setAttribute("id", `#${id}`);
          id++;
          poll_list.append(btn);
+         poll_list.append(input);
+         poll_list.append(option_btn);
          poll_list.append(delBtn);
          poll_list.append(document.createElement("br"));
          poll_list.append(document.createElement("br"));
@@ -70,6 +80,23 @@
        window.location.reload();
       });
      });
+     
+     document.querySelectorAll(".btn-option").forEach(option => option.addEventListener("click", function(e){
+      var id_num= Number(e.target.getAttribute("id").slice(1));
+      var input = document.getElementById(`^${id_num}`);
+      input.removeAttribute("style");
+      e.target.innerHTML = "Submit new option";
+      if(input.value != ""){
+         var body = {};
+         body.poll_id = polls[id_num]._id;
+         body.options = polls[id_num].options;
+         body.options[`option${Object.keys(polls[id_num].options).length+1}`] = input.value;
+         console.log(body);
+         ajaxFunctions.ajaxPostRequest(body,appUrl + '/all_polls/get', function(data){
+          window.location.reload();
+         });
+       }
+       }));
      
  }));
  
