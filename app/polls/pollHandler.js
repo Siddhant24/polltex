@@ -28,12 +28,18 @@ module.exports = {
   },
   
   findMyPolls: function(user, res){
-    
     Poll.find({
       user: user
     }, function (err, polls) {
       if (err) return console.error(err);
       res.json(chartHandler.myCharts(polls));
+    })
+  },
+  
+  findMyPoll: function(poll_id ,res, isAuthenticated){
+    Poll.find({_id: poll_id}, function(err, poll){
+      if(err) return console.error(err);
+      res.json({poll_data: chartHandler.myCharts(poll), isAuthenticated: isAuthenticated});
     })
   },
   
