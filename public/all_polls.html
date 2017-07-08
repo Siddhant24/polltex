@@ -2,32 +2,29 @@
 <html>
     <head>
 		<title>Polltex</title>
+		<link rel="shortcut icon" href="/public/sharingan icons/32.png" type="image/x-icon">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 		
 	</head>
-	
+	<header>
+	</header>
 	<body>
 	    <div class="container">
 			<br>
 			<p class="clementine-text">Polltex</p>
 			<img src="/public/sharingan icons/128.png" />
 		</div>
-		<div class="container text-center">
+		<div class="container text-center login-div" style="display:none">
              <span style="font-size: 30px;"><em>Login to create and share your own polls!</em></span>
              <button class="btn-login btn-link"><i class="fa fa-sign-in" aria-hidden="true" style="font-size:48px"></i>Login</button>
         </div>
         <h1 class="text-center">All Polls</h1>
         <div class="text-center poll_list">
-            Click a poll to see poll options, aggregate poll results and to vote!
+            Click a poll to see poll options, aggregate poll results and to vote!<br>
             <br><br>
         </div>
-        <h3 class="question"></h3>
-        <span id="your_vote" style="display:none">Your vote</span>
-        <select class="dropdown" style="display:none"></select>
-        <button class="btn btn-success" style="display:none" id="btn-vote">Vote</button>
-        <canvas id="myChart" width="200" height="200"></canvas>
         <script type="text/javascript" src="common/ajax-functions.js"></script>
 	    <script type="text/javascript" src="controllers/pollController.all_polls.js"></script>
 	    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
