@@ -9,6 +9,7 @@
  var dropdown = document.querySelector(".dropdown");
  var btn_vote = document.getElementById("btn-vote");
  var header = document.querySelector("header");
+ var share = document.querySelector(".btn-group");
  var prevChart = null;
  var isAuthenticated;
  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', window.location.href + '/get', function(data){
@@ -44,6 +45,17 @@
        a2.setAttribute("href", "/logout");
        a2.innerHTML ="Logout";
        header.append(a2);
+       var twitterUrl = `https://twitter.com/intent/tweet?url=${window.location.href}`;
+       var facebookUrl =`https://www.facebook.com/sharer/sharer.php?u=${document.location.href}&am`;
+      var a3 =document.createElement("a");
+      a3.setAttribute("href", twitterUrl);
+      a3.innerHTML = '<button class="twitter btn btn-primary"><i class="fa fa-twitter" style="font-size:20px" aria-hidden="true"></i>&nbsp;Tweet</button>';
+      var a4 = document.createElement("a");
+      a4.setAttribute("href", facebookUrl);
+      a4.innerHTML = '<button class="facebook btn btn-primary"><i class="fa fa-facebook" style="font-size:20px"></i>&nbsp;Share</button>';
+     share.append(a3);
+     share.append(a4);
+     console.log(a3);
        document.querySelector(".home").addEventListener("click", function(){
       window.location.href = appUrl;
      });

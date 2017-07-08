@@ -135,6 +135,9 @@ img {
 	float: left;
 }
 
+.btn-group{
+	text-align: center;
+}
 .btn-success{
 	width: 50px;
 	font-size: 25px;
