@@ -122,9 +122,17 @@ img {
 }
 
 /****** Click Styling ******/
+#wrapper{
+  display: flex;
+  justify-content: center;
+}
 
-.btn-primary{
+#new{
 	float: right;
+}
+
+#all{
+	float: left;
 }
 
 .btn-success{
