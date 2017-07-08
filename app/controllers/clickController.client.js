@@ -3,13 +3,13 @@
 (function () {
    
    var new_poll = document.querySelector('#new');
-   var all_polls = document.querySelector("#all");
+   var my_polls = document.querySelector("#my");
    
    new_poll.addEventListener('click', function(){
       window.location.href = appUrl + '/new_poll';
    });
    
-   all_polls.addEventListener('click', function(){
+   my_polls.addEventListener('click', function(){
       window.location.href = appUrl + '/my_polls';
    });
   /* var addButton = document.querySelector('.btn-add');
