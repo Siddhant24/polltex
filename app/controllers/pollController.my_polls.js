@@ -96,7 +96,11 @@
           window.location.reload();
          });
        }
-       }));
+     }));
+     
+     document.querySelector(".home").addEventListener("click", function(){
+      window.location.href = appUrl;
+     })
      
  }));
  

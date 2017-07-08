@@ -31,8 +31,8 @@ body {
 header {
 	color: #00BCD4;
 	height: 56px;
-	margin: 0 0 14px 0;
-	text-align: center;
+	margin: 0 14px 14px 0;
+	text-align: right;
 }
 
 p {
@@ -231,4 +231,10 @@ span {
 
 .form{
 	margin: 50px;
+}
+
+/***Home Button***/
+
+.home{
+	float: left;
 }

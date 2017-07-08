@@ -2,12 +2,13 @@
 
 (function () {
  
- var apiUrl = appUrl + '/all_polls/get';
  var poll_list = document.querySelector(".poll_list");
- var  polls = [];
  var dropdown = document.querySelector(".dropdown");
  var btn_vote = document.getElementById("btn-vote");
  var ctx = document.getElementById("myChart");
+ var btn_login = document.querySelector(".btn-login");
+ var apiUrl = appUrl + '/all_polls/get';
+ var  polls = [];
  var prevChart = null;
  
  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, function(data){
@@ -87,8 +88,12 @@
                     window.location.reload();
                 });
              }
-         }));
+        }));
      }
+     
+     btn_login.addEventListener("click", function(){
+         window.location.href = appUrl + "/login";
+     });
      
  }));
  

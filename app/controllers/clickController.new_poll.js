@@ -12,3 +12,7 @@ document.querySelector("#new").addEventListener('click', function(){
 				options.append(label);
 				options.append(input);
 			});
+			
+document.querySelector(".home").addEventListener("click", function(){
+      window.location.href = appUrl;
+     });
