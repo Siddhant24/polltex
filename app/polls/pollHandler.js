@@ -5,10 +5,10 @@ var chartHandler = require('../charts/chartHandler.js');
 
 module.exports = {
   
-  allPolls: function(res){
+  allPolls: function(res, isAuthenticated){
     Poll.find({}, function(err, docs){
       if(err) return console.error(err);
-      res.json(chartHandler.myCharts(docs));
+      res.json({poll_data: chartHandler.myCharts(docs), isAuthenticated: isAuthenticated});
     });
   },
   
@@ -85,5 +85,17 @@ module.exports = {
           }, function(err) {
         console.log(err); 
         });
+   },
+   
+   addOption: function(data){
+     console.log(data);
+   /*  var optionField = {};
+     optionField["options." + data.option] = data.value;*/
+     Poll.findOneAndUpdate({_id: data.poll_id}, {
+       options: data.options,
+       $push : {count: 0}
+     },{new: true}, function(doc){
+       
+     });
    }
 };
