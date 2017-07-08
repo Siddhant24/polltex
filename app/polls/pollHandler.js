@@ -53,7 +53,6 @@ module.exports = {
     var countField = {};
     countField["count." + (body.option-1).toString()] = 1;
     var voterInfo = {id: user_id, vote: body.value, option: body.option};
-    //console.log(body.poll_id);
     Poll.findOneAndUpdate({_id: body.poll_id}, {
       $push: { voters: voterInfo },
       $inc : countField

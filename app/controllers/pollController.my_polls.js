@@ -34,7 +34,6 @@
      document.querySelectorAll(".btn-del").forEach(btn => btn.addEventListener('click', function(e){
      var index = Number(e.target.getAttribute("id").slice(1));
      ajaxFunctions.ajaxRequest('DELETE', apiUrl + `?id=${polls[index]._id}`, function (data) {
-        console.log(data);
         if(data === "success")
          window.location.reload(true);
       });

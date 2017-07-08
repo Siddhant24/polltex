@@ -13,13 +13,9 @@
  var prevChart = null;
  var isAuthenticated;
  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', window.location.href + '/get', function(data){
-  console.log(data);
       poll = JSON.parse(data).poll_data.slice(0,-1)[0];
       chart = JSON.parse(data).poll_data.slice(-1)[0];
       isAuthenticated = JSON.parse(data).isAuthenticated;
-      console.log(poll);
-      console.log(chart);
-      
       if(isAuthenticated){
        var option = document.createElement("button");
        option.innerHTML = "Add new option";
@@ -57,7 +53,6 @@
       a4.innerHTML = '<button class="facebook btn btn-primary"><i class="fa fa-facebook" style="font-size:20px"></i>&nbsp;Share</button>';
      share.append(a3);
      share.append(a4);
-     console.log(a3);
        document.querySelector(".home").addEventListener("click", function(){
       window.location.href = appUrl;
      });
@@ -70,7 +65,6 @@
          body.poll_id = poll._id;
          body.options = poll.options;
          body.options[`option${Object.keys(poll.options).length+1}`] = input.value;
-         console.log(body);
          ajaxFunctions.ajaxPostRequest(body,appUrl + '/all_polls/get', function(data){
           window.location.reload();
          });

@@ -9,10 +9,8 @@
  var  polls = [];
  
  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, function(data){
-     console.log(data);
       var id  = 0;
       JSON.parse(data).poll_data.slice(0,-1).forEach(function(poll){
-          console.log(poll);
          polls.push(poll);
          var btn = document.createElement("button");
          btn.innerHTML = poll.question;
