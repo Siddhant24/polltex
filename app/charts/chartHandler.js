@@ -13,8 +13,8 @@ module.exports = {
             type: 'bar',
             data: {
                 labels: Object.keys(poll.options).map(function(key) {
-    return poll.options[key];
-}).reverse(),
+                    return poll.options[key];
+                }).reverse(),
                 datasets: [{
                     label: '# of Votes',
                     data: poll.count,
