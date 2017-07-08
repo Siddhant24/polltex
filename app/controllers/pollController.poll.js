@@ -49,9 +49,11 @@
        var facebookUrl =`https://www.facebook.com/sharer/sharer.php?u=${document.location.href}&am`;
       var a3 =document.createElement("a");
       a3.setAttribute("href", twitterUrl);
+      a3.setAttribute("target", "_blank")
       a3.innerHTML = '<button class="twitter btn btn-primary"><i class="fa fa-twitter" style="font-size:20px" aria-hidden="true"></i>&nbsp;Tweet</button>';
       var a4 = document.createElement("a");
       a4.setAttribute("href", facebookUrl);
+      a4.setAttribute("target", "_blank");
       a4.innerHTML = '<button class="facebook btn btn-primary"><i class="fa fa-facebook" style="font-size:20px"></i>&nbsp;Share</button>';
      share.append(a3);
      share.append(a4);
