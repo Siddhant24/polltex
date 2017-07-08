@@ -117,6 +117,16 @@ module.exports = function (app, passport) {
 			res.send("success");
 		});
 		
+	app.route('/api/poll/:id')
+		.get(function(req, res){
+			res.sendFile(path + '/public/poll.html');
+		});
+		
+	app.route('/api/poll/:id/get')
+		.get(function(req, res){
+			PollHandler.findMyPoll(req.params.id, res, req.isAuthenticated());
+		})
+		
 
 	/*app.route('/api/:id/clicks')
 		.get(isLoggedIn, clickHandler.getClicks)
