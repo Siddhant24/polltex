@@ -3,13 +3,10 @@
 (function () {
  
  var poll_list = document.querySelector(".poll_list");
- var dropdown = document.querySelector(".dropdown");
- var btn_vote = document.getElementById("btn-vote");
- var ctx = document.getElementById("myChart");
  var btn_login = document.querySelector(".btn-login");
+ var header = document.querySelector("header");
  var apiUrl = appUrl + '/all_polls/get';
  var  polls = [];
- var prevChart = null;
  
  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, function(data){
      console.log(data);
@@ -18,82 +15,85 @@
           console.log(poll);
          polls.push(poll);
          var btn = document.createElement("button");
-         var option_btn = document.createElement("button");
-         var input = document.createElement('input');
-         input.setAttribute("type", "text");
-         input.setAttribute("id", `^${id}`);
-         input.setAttribute("style", "display:none");
-         option_btn.innerHTML = "Add a new option";
          btn.innerHTML = poll.question;
          btn.setAttribute("class", "btn btn-default btn-poll");
          btn.setAttribute("id", `${id}`);
-         option_btn.setAttribute("class", "btn btn-info btn-option");
-         option_btn.setAttribute("id", `-${id}`);
          id++;
          poll_list.append(btn);
-         if(JSON.parse(data).isAuthenticated){
-             poll_list.append(input);
-             poll_list.append(option_btn);
-         }
          poll_list.append(document.createElement("br"));
          poll_list.append(document.createElement("br"));
      });
      
      document.querySelectorAll(".btn-poll").forEach(btn => btn.addEventListener('click', function(e){
-     if(prevChart){
-      prevChart.destroy();
-      while (dropdown.firstChild) {
-       dropdown.removeChild(dropdown.firstChild);
-      }
-     } 
      var index = Number(e.target.getAttribute("id"));
-     var myChart = new Chart(ctx, JSON.parse(data).poll_data.slice(-1)[0][index]);
-     prevChart = myChart;
-     document.querySelector(".question").innerHTML = polls[index].question;
-     Object.keys(polls[index].options).forEach(function(option){
-      var newOption = document.createElement("option");
-      newOption.innerHTML = polls[index].options[option];
-      newOption.setAttribute("value", polls[index].options[option]);
-      dropdown.append(newOption);
-     });
-     dropdown.removeAttribute("style");
-     document.getElementById("your_vote").removeAttribute("style");
-     btn_vote.setAttribute("id", `.${index}`);
-     btn_vote.removeAttribute("style");
+     window.location.href = appUrl + `/api/poll/${polls[index]._id}`;
      }));
      
-     btn_vote.addEventListener("click", function(e){
-      var body = {};
-      body.poll_id = polls[Number(e.target.getAttribute("id").slice(1))]._id;
-      body.option = Number(dropdown.selectedIndex) + 1;
-      body.value = dropdown.value;
-      ajaxFunctions.ajaxPostRequest(body,appUrl + '/my_polls/get', function(data){
-       window.location.reload();
-      });
-     });
-     
      if(JSON.parse(data).isAuthenticated){
-         document.querySelectorAll(".btn-option").forEach(option => option.addEventListener("click", function(e){
-             var id_num= Number(e.target.getAttribute("id").slice(1));
-             var input = document.getElementById(`^${id_num}`);
-             input.removeAttribute("style");
-             e.target.innerHTML = "Submit new option";
-             if(input.value != ""){
-                var body = {};
-                body.poll_id = polls[id_num]._id;
-                body.options = polls[id_num].options;
-                body.options[`option${Object.keys(polls[id_num].options).length+1}`] = input.value;
-                console.log(body);
-                ajaxFunctions.ajaxPostRequest(body,appUrl + '/all_polls/get', function(data){
-                    window.location.reload();
-                });
-             }
-        }));
+       var home = document.createElement("button");
+       home.setAttribute("class", "home btn-link");
+       home.innerHTML = '<i class="fa fa-home" style="font-size:48px;" aria-hidden="true"></i>Home';
+       header.append(home);
+       var p1 = document.createElement("p");
+       p1.innerHTML = 'Welcome, <span id="display-name"></span>!';
+       header.append(p1);
+       var a = document.createElement("a");
+       a.setAttribute("class", "menu");
+       a.setAttribute("href", "/profile");
+       a.innerHTML = "Profile";
+       header.append(a);
+       var p2 = document.createElement("p");
+       p2.innerHTML = "|";
+       header.append(p2);
+       var a2 = document.createElement("a");
+       a2.setAttribute("class", "menu");
+       a2.setAttribute("href", "/logout");
+       a2.innerHTML ="Logout";
+       header.append(a2);
+       document.querySelector(".home").addEventListener("click", function(){
+      window.location.href = appUrl;
+     });
+       var profileId = document.querySelector('#profile-id') || null;
+   var profileUsername = document.querySelector('#profile-username') || null;
+   var profileRepos = document.querySelector('#profile-repos') || null;
+   var displayName = document.querySelector('#display-name');
+   var apiUrl = appUrl + '/api/:id';
+
+   function updateHtmlElement (data, element, userProperty) {
+      element.innerHTML = data[userProperty];
+   }
+
+   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, function (data) {
+      var userObject = JSON.parse(data);
+
+      if (userObject.displayName !== null) {
+         updateHtmlElement(userObject, displayName, 'displayName');
+      } else {
+         updateHtmlElement(userObject, displayName, 'username');
+      }
+
+      if (profileId !== null) {
+         updateHtmlElement(userObject, profileId, 'id');   
+      }
+
+      if (profileUsername !== null) {
+         updateHtmlElement(userObject, profileUsername, 'username');   
+      }
+
+      if (profileRepos !== null) {
+         updateHtmlElement(userObject, profileRepos, 'publicRepos');   
+      }
+
+   }));
+     }
+     else{
+      document.querySelector(".login-div").removeAttribute("style");
      }
      
      btn_login.addEventListener("click", function(){
          window.location.href = appUrl + "/login";
      });
+    
      
  }));
  
