@@ -83,7 +83,8 @@ module.exports = {
           if(err) return console.error(err);
           poll.voters.forEach(function(voter){
               console.log(voter.id);
-            if(voter.id == user_id){
+            if(JSON.stringify(voter.id) == JSON.stringify(user_id)){
+                console.log("match!");
               voted = voter;
               resolve(voted);
             }
