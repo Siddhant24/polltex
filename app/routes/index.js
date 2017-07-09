@@ -92,12 +92,8 @@ module.exports = function (app, passport) {
 				user_id = ip.split(',')[0];
 			}
 			PollHandler.Voted(user_id, req.body.poll_id).then(function(voted){
-				console.log("hi");
-				console.log(voted);
 				if(voted)
 					PollHandler.deleteMyVote(voted, req.body.poll_id);
-		//		else
-		//			PollHandler.myVote(user_id, req.body);
 			}).then(function(){
 				PollHandler.myVote(user_id, req.body);
 			});
