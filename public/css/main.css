@@ -122,6 +122,10 @@ img {
 }
 
 /****** Click Styling ******/
+#new_option{
+	float : left;
+}
+
 #wrapper{
   display: flex;
   justify-content: center;

@@ -1,6 +1,6 @@
 'use strict';
 
-document.querySelector("#new").addEventListener('click', function(){
+document.querySelector("#new_option").addEventListener('click', function(){
 				var options = document.querySelector(".options");
 				var option_num = (parseInt(options.lastElementChild.getAttribute("name").slice(6))+1).toString();
 				var label = document.createElement('label');
