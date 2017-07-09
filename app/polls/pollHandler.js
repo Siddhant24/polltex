@@ -50,6 +50,7 @@ module.exports = {
   },
   
   myVote: function(user_id, body){
+      console.log("myvote");
     var countField = {};
     countField["count." + (body.option-1).toString()] = 1;
     var voterInfo = {id: user_id, vote: body.value, option: body.option};
@@ -61,6 +62,7 @@ module.exports = {
   },
   
   deleteMyVote: function(voter, poll_id){
+      console.log(voter);
     var countField = {};
     countField["count." + (voter.option-1).toString()] = -1;
     Poll.findOneAndUpdate({_id: poll_id}, {
@@ -72,23 +74,31 @@ module.exports = {
   },
   
   Voted: function(user_id, poll_id){
+      console.log("voted");
       var voted = null;
       var promise = new Promise(function(resolve, reject) {
         Poll.findOne({_id: poll_id}, function(err, poll){
+     //       console.log(poll.voters);
+            console.log(user_id);
           if(err) return console.error(err);
           poll.voters.forEach(function(voter){
+              console.log(voter.id);
             if(voter.id == user_id){
               voted = voter;
               resolve(voted);
             }
           });
+          resolve(voted);
         });
       });
       
      return promise.then(function(voted) {
+         console.log("found");
+         console.log(voted);
         return voted;
-          }, function(err) {
-        console.log(err); 
+          }, function(voted) {
+              console.log("not found");
+        return voted;
         });
    },
    
