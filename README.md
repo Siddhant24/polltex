@@ -14,3 +14,6 @@ Polltex is a website that lets you create polls, view results in charts and also
 * As an unauthenticated or authenticated user, you can see and vote on everyone's polls but only once. (IP testing for unauthenticated users, I know it can be easily bypassed)
 * As an unauthenticated or authenticated user, you can see the results of polls in chart form.
 * As an authenticated user, if you don't like the options on a poll, you can create a new option.
+
+## Authentication
+Users can login using their Github accounts. This feature uses a Github OAuth application. On being asked, users must authenticate polltex to receive their info.
