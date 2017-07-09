@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "node app for creating and managing polls",
   "main": "server.js",
+  "engines":{
+    "node": 4.6.1
+  }
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Siddhant24/mybasejump"
