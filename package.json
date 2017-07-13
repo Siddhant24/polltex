@@ -4,14 +4,14 @@
   "description": "node app for creating and managing polls",
   "main": "server.js",
   "engines":{
-    "node":"4.6.1"
+    "node":"4.8.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Siddhant24/mybasejump"
+    "url": "git+https://github.com/Siddhant24/polltex"
   },
   "homepage": "",
-  "bugs": "https://github.com/Siddhant24/mybasejump/issues",
+  "bugs": "https://github.com/Siddhant24/polltex/issues",
   "keywords": [
     "MongoDB",
     "Mongoose",
